@@ -1,4 +1,1 @@
-curriculum_vitae_data_de.toml filter=git-crypt diff=git-crypt
-application_letter.typ filter=git-crypt diff=git-crypt
-curriculum_vitae.typ filter=git-crypt diff=git-crypt
-assets/** filter=git-crypt diff=git-crypt
+**/*personal* filter=git-crypt diff=git-crypt
