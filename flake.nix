@@ -15,6 +15,7 @@
             TYPST_FONT_PATHS = "./fonts";
             buildInputs = with pkgs; [
               git-crypt
+              gum
               typst
               typst-lsp
               zathura

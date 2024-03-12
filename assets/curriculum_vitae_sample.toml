@@ -1,0 +1,73 @@
+lang = "en"
+
+name = "Gordon Freeman"
+profession = "xxxxxx xxxxxxxx (xxx)"
+email = "xxxxxxx@xxxxx.xxx"
+phone = "+xx xxxx xxxxxxx"
+street = "xxxxxxxxxxxxx"
+number = "xx"
+postal = "xxxxx"
+city = "xxxxxxxx"
+
+picture = "assets/passport_sample.gif"
+birthdate = "xx.xx.xxxx (xx)"
+interests = [
+  "xxx",
+  "xxxxxx",
+  "xxxxxxx xxxxx",
+  "xxxxx",
+  "xxxxxx",
+  "xxxxxxxx",
+]
+
+[[languages]]
+language = "German"
+proficiency = "C2"
+
+[[languages]]
+language = "English"
+proficiency = "C2"
+
+[social]
+github = "xxxxxx"
+linkedin = "xxxxxxxxxx-xxxxx-x"
+xing = "xxxxxx_xxxxxxxxx"
+
+[[certificates]]
+title = "xxxxxxxxxxxxxxx"
+span = { begin = "00'00", end = "0000" }
+location = "xxxxxxxxxxxxxxxxxxxxxxx xxxxxxx xxxxxxxxxx"
+
+[[certificates]]
+title = "xxxxx"
+span = { begin = "00'00", end = "0000" }
+location = "xxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxxxxx"
+
+[[jobs]]
+title = "xxxxxxxxxxxxxxxxxx"
+location = "Company"
+span = { begin = "00'00", end = "today" }
+highlights = [
+ "PHP",
+ "Java",
+ "Rust",
+ "Docker",
+]
+tools = [
+ "xxxx",
+ "xxxx",
+ "xxxx",
+ "...",
+]
+achievements = [
+  # technical
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  # project  
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  # teamwork    
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  # personal
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+]
