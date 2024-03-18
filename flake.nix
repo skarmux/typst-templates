@@ -15,6 +15,7 @@
             TYPST_FONT_PATHS = "./fonts";
             buildInputs = with pkgs; [
               git-crypt
+              taplo # A TOML toolkit written in Rust
               gum
               typst
               typst-lsp
