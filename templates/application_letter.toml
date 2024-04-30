@@ -1,46 +1,17 @@
 # application_letter.typ
-assets = "placeholder"
+assets = "placeholder" # <- CHANGE ME
 
 # Company contact
-contact = "Maxine Muster"
-company = "Muster "
-street = "Musterstraße 123"
-postal = "12345"
-city = "Musterstadt"
-mail = "max.mustermann@example.com"
-phone = "+49 1234 567890"
+contact = ""
+company = ""
+street = ""
+postal = ""
+city = ""
+mail = ""
+phone = ""
 
-vacancy = "Musterkaufmann"
+vacancy = ""
 
 content = """
-Sehr geehrte Damen und Herren,
-
-als erfahrener Software Engineer mit einem starken Hintergrund in der \ 
-Entwicklung von qualitativ hochwertiger Software und einem tiefen Verständnis \
-für aktuelle Technologien, bin ich sehr interessiert an der Möglichkeit, mich \
-Ihrem Team anzuschließen.
-
-Mit [Anzahl] Jahren Erfahrung in der Branche habe ich bewiesen, dass ich \
-komplexe Probleme lösen und effiziente Lösungen entwickeln kann. Meine \
-Fähigkeiten umfassen [Liste relevanter Fähigkeiten oder Technologien]. Darüber \
-hinaus verfüge ich über ausgezeichnete zwischenmenschliche Fähigkeiten, die es \ 
-mir ermöglichen, effektiv in einem Team zu arbeiten und mit verschiedenen \ 
-Interessengruppen zu kommunizieren.
-
-Ihr Unternehmen hat meine Aufmerksamkeit besonders aufgrund [eines bestimmten \
-Projekts, Produkts oder Werts, den das Unternehmen hat] geweckt, und ich bin \ 
-begeistert von der Aussicht, einen Beitrag zu Ihrem Erfolg zu leisten. Ich bin \
-überzeugt davon, dass meine Fähigkeiten und Erfahrungen gut zu den \
-Anforderungen der Position passen.
-
-Anbei finden Sie meinen Lebenslauf, der weitere Einzelheiten über meine \ 
-bisherige Karriere und meine Fähigkeiten enthält. Ich würde mich sehr darüber \
-freuen, die Möglichkeit zu einem persönlichen Gespräch zu erhalten, um mehr \
-über Ihre Anforderungen zu erfahren und darüber zu diskutieren, wie ich dazu \
-beitragen kann, Ihre Ziele zu erreichen.
-
-Vielen Dank für Ihre Zeit und Ihre Aufmerksamkeit. Ich freue mich darauf, bald \
-von Ihnen zu hören.
-
-Mit freundlichen Grüßen,"""
+..."""
 

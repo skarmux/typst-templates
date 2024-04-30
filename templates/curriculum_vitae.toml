@@ -1,60 +1,49 @@
 # curriculum_vitae.typ
-assets = "placeholder"
+assets = "placeholder" # <- CHANGE ME
 
-interests = [ "Fotografie", "Radfahren", "Filme" ]
-
-[[languages]]
-language = "Deutsch"
-proficiency = "C2"
+interests = [ "" ]
 
 [[languages]]
-language = "Englisch"
-proficiency = "C2"
+language = ""
+proficiency = "" # C1 | C2 | ...
 
 [social]
-github = "max-muster"
-linkedin = "max-muster-a1b2d3e4f"
-xing = "Max_Muster"
+github = ""
+linkedin = ""
+xing = ""
 
 [[jobs]]
-title = "Software Entwickler"
-location = "Musterfirma"
-span = { begin = "01.1900", end = "heute" }
+title = ""
+location = ""
+span = { begin = "01.2100", end = "01.2010" }
 highlights = [ #
-    "HTML",
-    "CSS",
-    "React",
-    "Java",
+    "",
+    "",
+    "",
+    "",
 ]
 tools = [ #
-    "Windows",
-    "Bash",
-    "MySQL",
+    "",
+    "",
+    "",
 ]
 achievements = [
     # technical
     """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra 
-    velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna 
-    vitae elit pulvinar, nec pellentesque turpis mollis. Donec id.""",
+    ...""",
     # project  
     """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra 
-    velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna 
-    vitae elit pulvinar, nec pellentesque turpis mollis. Donec id.""",
+    ...""",
     # teamwork    
     """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra 
-    velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna 
-    vitae elit pulvinar, nec pellentesque turpis mollis. Donec id.""",
+    ...""",
     # personal
     """
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra 
-    velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna 
-    vitae elit pulvinar, nec pellentesque turpis mollis. Donec id.""",
+    ...""",
 ]
 
 [[certificates]]
-title = "Muster Abschluss"
-span = { begin = "01.1990", end = "01.1990" }
-location = "Muster Hochschule für Musterkunde"
+title = ""
+span = { begin = "01.2010", end = "01.2010" }
+location = ""
+
