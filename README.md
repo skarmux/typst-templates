@@ -3,23 +3,8 @@
 Quickly generate documents with a unified design with a simple command from any
 machine. Contents and typeface are stored separately and styling is readonly.
 
-<style>
-  .container {
-    text-align: center;
-  }
-  .image {
-    display: inline-block;
-    max-width: 50%; /* Adjust the maximum width as needed */
-    width: auto;
-    height: auto;
-    vertical-align: top; /* Align images to the top */
-    margin: 0 10px;
-  }
-</style>
-
-<div style="text-align: center;">
-  <img src="gallery/application_letter.jpg" alt="Application Letter" class="image" />
-  <img src="gallery/curriculum_vitae.png" alt="CV" class="image" />
+<div align="center">
+  <img src="gallery/curriculum_vitae.png" alt="CV" />
 </div>
 
 ## Setup
