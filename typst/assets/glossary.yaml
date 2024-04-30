@@ -1,0 +1,125 @@
+code:
+  language:
+    - [, Java]
+    - [, C++]
+    - [, Rust]
+    - [󱄅, Nix]
+    - [, WebAssembly]
+  script:
+    - [󰌠, Python]
+    - [󰌞, JavaScript]
+    - [󰛦, TypeScript]
+    - [󱆃, Bash]
+    - [, PHP]
+    - [󰨡, Visual Basic Script]
+devops:
+  cicd:
+    - [, Jenkins]
+    - [, OAuth 2.0]
+    - [󰒃, SOPS]
+    - [, GitLab CI]
+    - [󰠄, Bamboo]
+  config:
+    - [󱂚, Ansible]
+    - [, CMake]
+    - [, Docker]
+    - [, NGINX]
+api:
+  rest:
+    - [󱂛, REST]
+    - [󱂛, gRPC]
+  protocol:
+    - [󱂛, SOAP]
+    - [󱂛, ProtoBuf]
+  doc:
+    - [󱂛, apiDoc]
+    - [󱂛, Swagger]
+    - [󱂛, OpenAPI]
+    - [󱂛, Postman]
+frontend:
+  markup:
+    - [󰗀, XML]
+    - [, HTML]
+    - [, Twig]
+    - [󰗀, Askama]
+    - [󰗀, Jinja]
+  style:
+    - [, CSS]
+    - [, SCSS]
+    - [󱏿, Tailwind CSS]
+    - [󰅩, Bootstrap]
+    - [, Material Design]
+  jslib:
+    - [, HTMX]
+    - [󰅩, Alpine.js]
+    - [, jQuery]
+  testing:
+    - [󰱚, Cypress]
+    - [󰱚, Unit]
+    - [, Postman]
+project:
+  agile:
+    - [󱂛, Kanban]
+    - [󱂛, Scrum]
+  collab:
+    - [󰠄, Jira]
+    - [󱂛, Confluence]
+    - [, Omnitracker]
+  version:
+    - [, Git]
+    - [, GitLab]
+    - [󰠄, Bitbucket]
+    - [, Subversion]
+database:
+  relational:
+    - [, SQL Server]
+    - [, PostgreSQL]
+    - [󰆼, MariaDB]
+    - [󰆼, MySQL]
+    - [󰆼, SQLite]
+  nosql:
+    - [, Redis]
+    - [, MongoDB]
+platforms:
+  os:
+    - [󰌽, Linux]
+    - [󱄅, NixOS]
+    - [󰣇, Arch]
+    - [, Ubuntu]
+    - [, Windows]
+    - [, macOS]
+  cloud:
+    - [󰸏, Amazon Web Services]
+    - [󰛳, Tailscale]
+    - [󰛳, IP-Tables]
+    - [󰛳, Wireguard]
+    - [, Azure]
+  mobile:
+    - [, Android]
+    - [, iOS]
+frameworks:
+  web:
+    - [󰚿, Angular]
+    - [󰡄, Vue.js]
+    - [, Leptos]
+    - [, Axum]
+    - [󰫦, Symfony]
+    - [󰜈, React]
+  graphics:
+    - [󱂛, OpenGL]
+    - [󱂛, Vulkan]
+    - [, GLFW]
+    - [, SDL2]
+development:
+  ide:
+    - [󰀴, Android Studio]
+    - [, eclipse]
+    - [, NetBeans]
+    - [, IntelliJ]
+    - [, WebStorm]
+    - [, Visual Studio]
+  editor:
+    - [, Vim]
+    - [, Neovim]
+    - [󰚄, Helix]
+    - [, Visual Studio Code]

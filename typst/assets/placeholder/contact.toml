@@ -1,0 +1,8 @@
+name = "Max Muster"
+profession = "Software Entwickler"
+email = "max.mustermann@example.com"
+phone = "+49 1234 567890"
+street = "Musterstraße 123"
+postal = "12345"
+city = "Musterstadt"
+birthdate = "01.01.1990"

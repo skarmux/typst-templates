@@ -1,0 +1,39 @@
+# motivational_letter.typ
+assets = "placeholder"
+
+headline = "Motivationsschreiben"
+
+interest = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+"""
+
+qualification = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+"""
+
+conclusion = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus.
+"""
+
