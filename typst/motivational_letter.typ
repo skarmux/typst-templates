@@ -3,13 +3,13 @@
 
 #import "./modules/page.typ": conf
 #import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, headline
+#import "./modules/components.typ": header, hl, keyword, h6
 
 #show: conf
 
 //==============================================================================
 
-#include "../../modules/header.typ"
+#header(contact)
 
 #hl()
 
@@ -22,7 +22,7 @@
     )
 )
 
-#headline(data.headline)
+#h6(data.headline)
 
 #v(1em)
 

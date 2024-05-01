@@ -1,7 +1,7 @@
 #import "page.typ": colors
 #let glossary = yaml("../assets/glossary.yaml")
 
-#let keyword(icon: none, size: 1em, color: colors.complement, content) = {
+#let keyword(icon: none, size: 1.618em, color: colors.complement, content) = {
   set align(horizon)
   if icon == none {
     for (_, subcats) in glossary.pairs() {
@@ -17,7 +17,7 @@
     stack(
         dir: ltr,
         spacing: 0.5em, 
-        box(width: 1.1em, text(fill: color, size, icon)), 
+        box(width: size, text(fill: color, size, icon)), 
         content,
     )
 }
@@ -51,7 +51,7 @@
     image("../assets/"+assets_source+"/logo.svg", height: 6em) 
 }
 
-#let header(profile) = {
+#let header(contact) = {
     table(
       columns: (auto, 1fr, 1fr),
       gutter: 1em, 
@@ -64,9 +64,9 @@
           size: 25pt, 
           weight: "bold", 
           gradient.linear(colors.primary, colors.complement), 
-          profile.name,
+          contact.name,
         ), 
-        text(weight: "bold", profile.profession),
+        text(weight: "bold", contact.profession),
       ), 
       stack(
         dir: ttb, 
@@ -75,7 +75,7 @@
           icon: ``, 
           align(
             horizon + left, 
-            [#profile.street \ #profile.postal #profile.city]
+            [#contact.street \ #contact.postal #contact.city]
           ),
         ),
       ), 
@@ -84,9 +84,9 @@
         spacing: 1em, 
         keyword(
           icon: `󰁥`, 
-          link("mailto:" + profile.email)[#profile.email]
+          link("mailto:" + contact.email)[#contact.email]
         ), 
-        keyword(icon: ``, profile.phone),
+        keyword(icon: ``, contact.phone),
       ),
     )
 }

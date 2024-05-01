@@ -5,7 +5,7 @@
 
 #import "./modules/page.typ": conf
 #import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, headline
+#import "./modules/components.typ": header, hl, keyword, h6
 
 #show: conf
 #set par(justify: true)
@@ -51,7 +51,7 @@
   image("./assets/"+data.assets+"/profile.gif", width: 6em),
 )
 
-= #headline(headers.technologies.at("de"))
+= #h6(headers.technologies.at("de"))
 #v(1em)
 #columns(
   3, 
@@ -138,7 +138,7 @@
 )
 #v(1.5em)
 
-= #headline(headers.journey.at("de"))
+= #h6(headers.journey.at("de"))
 #v(1em)
 #for job in data.jobs {
   box[#grid(
@@ -198,7 +198,7 @@
 #box(
   width: 1fr,
 )[
-  = #headline(headers.certificates.at("de"))
+  = #h6(headers.certificates.at("de"))
   #v(1em)
   #for cert in data.certificates [
     #grid(
@@ -212,7 +212,7 @@
 ]
 #v(1.5em)
 
-= #headline(headers.activities.at("de"))
+= #h6(headers.activities.at("de"))
 #v(1em)
 #align(
   center, stack(

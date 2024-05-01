@@ -18,16 +18,16 @@
     dir: ttb,
     spacing: 1em,
     ..data.participants.leader.map(p => {
-        keyword(icon: "󰆥", p.name)
+        keyword(icon: "󰆥", size: 1em, p.name)
     }),
     ..data.participants.reporter.map(p => {
-        keyword(icon: "󰙏", p.name)
+        keyword(icon: "󰙏", size: 1em, p.name)
     }),
     ..data.participants.present.map(p => {
-        keyword(icon: "", p.name)
+        keyword(icon: "", size: 1em, p.name)
     }),
     ..data.participants.absent.map(p => {
-        keyword(icon: "󱙝", p.name)
+        keyword(icon: "󱙝", size: 1em, p.name)
     }),
   ),
   image("./assets/"+data.assets+"/logo.svg", height: 70pt),
@@ -36,15 +36,13 @@
     spacing: 1em,
     h6([Meeting Protocol]),
     keyword(
-        icon: "", 
+        icon: "󰃭", size: 1em, 
         color: colors.text, 
         datetime.today().display("[day].[month].[year]")
     ),
     data.location,
   ),
 )
-
-#hl()
 
 #align(center,h6(data.topic))
 
@@ -62,6 +60,25 @@
   )
 }
 
+#let solid(content) = {
+  rect(
+    inset: 0.75em,
+    stroke: 1.5pt + gradient.linear(
+        colors.complement, 
+        colors.primary, 
+        angle: 45deg
+        ),
+    fill: gradient.linear(
+        colors.complement, 
+        colors.primary, 
+        angle: 45deg
+        ),
+    radius: 5pt, 
+    width: 100%,
+    text(fill: colors.base, content)
+  )
+}
+
 #for item in data.agenda {
    hl()
    h6(item.issue)
@@ -72,7 +89,20 @@
        bubble(keyword(icon:"󰛨",f))
      })
    )
-   bubble(keyword(icon:"󰙁",list(..item.decisions)))
-   bubble(keyword(icon:"",list(..item.tasks)))
+   set list(marker: text(fill: colors.base)[●])
+   solid(keyword(icon:"󰙁",color: colors.base, list(..item.decisions)))
+   item.tasks.map(f => {
+     bubble(
+        table(
+          columns: (1fr, auto),
+          gutter: 1em, 
+          stroke: none, 
+          inset: 0pt,
+          align: (x, y) => (horizon, horizon+right).at(x), 
+          keyword(icon:"󰄱",f.desc),
+          text(fill: colors.primary, weight: "bold", f.resp)
+        )
+     )
+   }).join()
 }
 

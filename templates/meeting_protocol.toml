@@ -30,47 +30,5 @@ decisions = [
     "Have to do another thing."
 ]
 tasks = [
-    "Find Jason."
-]
-
-[[agenda]]
-issue = "Who uses the fridge?"
-findings = [
-    "Something is wrong.",
-    "I can feel it."
-]
-decisions = [
-    "Gonna do this and that.",
-    "Have to do another thing."
-]
-tasks = [
-    "Find Jason."
-]
-
-[[agenda]]
-issue = "Who uses the fridge?"
-findings = [
-    "Something is wrong.",
-    "I can feel it."
-]
-decisions = [
-    "Gonna do this and that.",
-    "Have to do another thing."
-]
-tasks = [
-    "Find Jason."
-]
-
-[[agenda]]
-issue = "Who uses the fridge?"
-findings = [
-    "Something is wrong.",
-    "I can feel it."
-]
-decisions = [
-    "Gonna do this and that.",
-    "Have to do another thing."
-]
-tasks = [
-    "Find Jason."
+    { desc = "Find Jason.", resp = "Nils Harbke" }
 ]

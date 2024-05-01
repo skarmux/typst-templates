@@ -3,7 +3,7 @@
 
 #import "./modules/page.typ": conf
 #import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, headline
+#import "./modules/components.typ": header, hl, keyword, h6
 
 #show: conf
 
@@ -24,7 +24,7 @@
 
 #align(right, datetime.today().display(contact.city + ", [day].[month].[year]"))
 
-#headline([Bewerbung auf die Stelle als #data.vacancy])
+#h6([Bewerbung auf die Stelle als #data.vacancy])
 
 #v(1em)
 
