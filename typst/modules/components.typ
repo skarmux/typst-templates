@@ -1,7 +1,7 @@
 #import "page.typ": colors
 #let glossary = yaml("../assets/glossary.yaml")
 
-#let keyword(icon: none, size: 20pt, color: colors.primary, content) = {
+#let keyword(icon: none, size: 1em, color: colors.complement, content) = {
   set align(horizon)
   if icon == none {
     for (_, subcats) in glossary.pairs() {
@@ -17,7 +17,7 @@
     stack(
         dir: ltr,
         spacing: 0.5em, 
-        text(fill: color, size, icon), 
+        box(width: 1.1em, text(fill: color, size, icon)), 
         content,
     )
 }
@@ -29,14 +29,27 @@
     )
 }
 
-#let headline(content) = {
+#let h5(content) = {
    text(
-     size: 14pt,
+     size: 2.618em,
      weight: "bold",
      fill: gradient.linear(colors.primary, colors.complement),
      content,
-   ) 
+   )
 } 
+
+#let h6(content) = {
+   text(
+     size: 1.618em,
+     weight: "bold",
+     fill: gradient.linear(colors.primary, colors.complement),
+     content,
+   )
+} 
+
+#let company_header(assets_source) = {
+    image("../assets/"+assets_source+"/logo.svg", height: 6em) 
+}
 
 #let header(profile) = {
     table(
