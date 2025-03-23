@@ -12,10 +12,6 @@ sed -e '1d' \
     -e 's:"\./:"'$PROJECT_ROOT'/typst/:' \
     $TYP >> $TEMP
 
-typst compile --root / \
-    --font-path $PROJECT_ROOT/fonts \
-    $TEMP \
-    $(basename $DATA .toml).pdf
+typst compile --root / $TEMP $(basename $DATA .toml).pdf
 
 rm $TEMP
-
