@@ -66,7 +66,7 @@
             -e 's:"\./:"'$ROOT'/typst/:' \
             $TYP >> $TMP_TYP
 
-        typst compile --root / --font-path $ROOT/fonts $TMP_TYP $(basename $TOML .toml).pdf
+        ${pkgs.typst}/bin/typst compile --root / --font-path $ROOT/fonts $TMP_TYP $(basename $TOML .toml).pdf
       '';
     in
     {
@@ -75,7 +75,7 @@
         paths = [
           stt
           source
-          pkgs.typst
+          # pkgs.typst
           pkgs.nerd-fonts.profont
         ];
         buildInputs = with pkgs; [
