@@ -5,8 +5,6 @@
   #set text(
     font: "ProFontWindows Nerd Font", size: 11pt, fill: colors.text, ligatures: false,
   )
-  // #set list(marker: text(fill: colors.complement)[●])
-  // #set list(marker: text(fill: colors.complement)[])
   #set list(marker: text(fill: colors.complement)[])
   #doc
 ]
