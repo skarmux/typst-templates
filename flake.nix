@@ -54,8 +54,8 @@
         DATA=$TEMPLATE.toml
         # use pre-existing user template whenever possible
         # TODO: Again... Symlinking would be nice.
-        if [ ! -f $TEMPLATE.toml ]; then
-          cp $TEMPLATE.toml $TMP_DIR/data.toml
+        if [ ! -f "$TEMPLATE.toml" ]; then
+          cp --no-preserve=all $TEMPLATE.toml $TMP_DIR/data.toml
         else
           cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
         fi
@@ -66,7 +66,7 @@
             --root $TMP_DIR \
             --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
             $TMP_DIR/template.typ \
-            $TMP_DIR/$TEMPLATE.pdf > /dev/null 2>&1 &
+            $TMP_DIR/$TEMPLATE.pdf > /dev/null &
           WATCH_PID=$!
 
           while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
