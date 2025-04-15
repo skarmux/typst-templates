@@ -66,13 +66,13 @@
             --root $TMP_DIR \
             --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
             $TMP_DIR/template.typ \
-            $TMP_DIR/$TEMPLATE.pdf > /dev/null &
+            $TMP_DIR/$TEMPLATE.pdf > typst.out.log 2> typst.error.log &
           WATCH_PID=$!
 
           while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
             sleep 0.5
           done
-          ${pkgs.evince}/bin/evince $TMP_DIR/$TEMPLATE.pdf &
+          ${pkgs.evince}/bin/evince $TMP_DIR/$TEMPLATE.pdf > evince.out.log 2> evince.error.log &
           EVINCE_PID=$!
 
           $EDITOR $TMP_DIR/data.toml
