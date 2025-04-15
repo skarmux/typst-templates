@@ -54,7 +54,7 @@
         DATA=$TEMPLATE.toml
         # use pre-existing user template whenever possible
         # TODO: Again... Symlinking would be nice.
-        if [ ! -f "$TEMPLATE.toml" ]; then
+        if [ -f "$TEMPLATE.toml" ]; then
           cp --no-preserve=all $TEMPLATE.toml $TMP_DIR/data.toml
         else
           cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
