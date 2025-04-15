@@ -16,7 +16,7 @@
         #       .typ files need to be copied to the build location
         cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
 
-        ln -s ''${ASSETS_PATH:-${self}/assets} $TMP_DIR/assets
+        ln -s "${"ASSETS_PATH:-${self}/assets"}" $TMP_DIR/assets
 
         if [ -z "${"TEMPLATE:-"}" ]; then
           echo "Choose a template:"
@@ -68,21 +68,16 @@
             $TMP_DIR/template.typ \
             $TMP_DIR/$TEMPLATE.pdf > typst.out.log 2> typst.error.log &
           WATCH_PID=$!
+          trap "if kill -0 $WATCH_PID 2> /dev/null; then kill $WATCH_PID; fi" EXIT
 
           while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
             sleep 0.5
           done
           ${pkgs.evince}/bin/evince $TMP_DIR/$TEMPLATE.pdf > evince.out.log 2> evince.error.log &
-          EVINCE_PID=$!
 
           $EDITOR $TMP_DIR/data.toml
 
           kill $WATCH_PID
-
-          # user might have manually exited the window
-          if kill -0 "$EVINCE_PID" 2> /dev/null; then
-            kill $EVINCE_PID
-          fi
 
           # (Optional) backup to execution location
           # TODO: Getting a symlink to work would be perfect...
