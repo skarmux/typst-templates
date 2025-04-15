@@ -2,7 +2,7 @@
   description = "Skarmux Typst-Templates";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -10,55 +10,28 @@
     flake-utils.lib.eachDefaultSystem (system:
     let 
       pkgs = nixpkgs.legacyPackages.${system};
-      source = pkgs.stdenv.mkDerivation {
-        pname = "stt-source";
-        version = "0.1.0";
-        src = pkgs.lib.cleanSource ./.;
-        buildPhase = ''
-          mkdir -p $out/bin/typst && cp -r typst/* $out/bin/typst
-          mkdir -p $out/bin/fonts && cp -r fonts/* $out/bin/fonts
-          mkdir -p $out/bin/templates && cp -r templates/* $out/bin/templates
-        '';
-      };
-      stt = pkgs.writeScriptBin "stt" /* bash */ ''
-        ROOT=$(dirname $(realpath "$0") )
 
-        SELECT=$(${pkgs.gum}/bin/gum choose \
-          "Meeting Protocol" \
-          "Curriculum Vitae" \
-          "Application Letter" \
-          "Motivational Letter" \
-        );
+      generate = pkgs.writeShellScriptBin "generate-pdf" ''
+        set -euo pipefail
 
-        case $SELECT in
-          "Meeting Protocol")
-            TOML="meeting_protocol.toml"
-            ;;
-          "Curriculum Vitae")
-            TOML="curriculum_vitae.toml"
-            ;;
-          "Application Letter")
-            TOML="application_letter.toml"
-            ;;
-          "Motivational Letter")
-            TOML="motivational_letter.toml"
-            ;;
-        esac
+        SELECT=$1
+        ROOT=${self}
 
-        if [ ! -f $TOML ]; then
-          cp $ROOT/templates/$TOML ./$TOML
-          chmod +w $TOML
+        TOML="$ROOT/templates/$SELECT.toml"
+        TYP="$ROOT/typst/$SELECT.typ"
+
+        # Give the user an editable document
+        USER_TOML=$(basename $TOML)
+        if [ ! -f $USER_TOML ]; then
+          cp $TOML $USER_TOML
+          chmod +w $USER_TOML
         fi
+        $EDITOR $USER_TOML
 
-        $EDITOR $TOML
-
-        # Extract corresponding typst document from first line comment
-        TYP=$ROOT/typst/$(sed -n '1s/# //p' $TOML)
-
+        # Temporary Typ with absolute path to USER_TOML
         TMP_TYP=$(mktemp)
         trap "rm $TMP_TYP" EXIT
-
-        echo '#let data = toml("'$(realpath $TOML)'")' > $TMP_TYP
+        echo '#let data = toml("'$(realpath $USER_TOML)'")' > $TMP_TYP
 
         # Omit first line and write typst code into TMP_TYP
         # Replace relative with absolute paths
@@ -66,28 +39,44 @@
             -e 's:"\./:"'$ROOT'/typst/:' \
             $TYP >> $TMP_TYP
 
-        ${pkgs.typst}/bin/typst compile --root / --font-path $ROOT/fonts $TMP_TYP $(basename $TOML .toml).pdf
+        ${pkgs.typst}/bin/typst compile \
+          --root / \
+          --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
+          $TMP_TYP \
+          $(basename $TOML .toml).pdf
+      '';
+
+      meet = pkgs.writeShellScriptBin "gen-meet" ''
+        ${generate}/bin/generate-pdf meeting_protocol
+      '';
+
+      cv = pkgs.writeShellScriptBin "gen-cv" ''
+        ${generate}/bin/generate-pdf curriculum_vitae
+      '';
+
+      application = pkgs.writeShellScriptBin "gen-application" ''
+        ${generate}/bin/generate-pdf application_letter
+      '';
+
+      motivation = pkgs.writeShellScriptBin "gen-motivation" ''
+        ${generate}/bin/generate-pdf motivational_letter
       '';
     in
     {
-      packages.default = pkgs.symlinkJoin {
-        name = "stt";
-        paths = [
-          stt
-          source
-          # pkgs.typst
-          pkgs.nerd-fonts.profont
-        ];
-        buildInputs = with pkgs; [
-          makeWrapper
-        ];
-        postBuild = ''
-          wrapProgram $out/bin/stt --prefix PATH : $out/bin
-        '';
+      apps = {
+        meet = { type = "app"; program = "${meet}/bin/gen-meet"; };
+        cv = { type = "app"; program = "${cv}/bin/gen-cv"; };
+        application = { type = "app"; program = "${application}/bin/gen-application"; };
+        motivation = { type = "app"; program = "${motivation}/bin/gen-motivation"; };
       };
 
       devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [ typst typst-lsp bash-language-server ];
+        buildInputs = [
+          pkgs.typst
+          pkgs.typst-lsp
+          pkgs.taplo
+          pkgs.nixd
+        ];
       };
     }
   );
