@@ -4,7 +4,7 @@ Quickly generate documents with a unified design with a simple command from any
 machine. Contents and typeface are stored separately and styling is readonly.
 
 <div align="center">
-  <img src="gallery/curriculum_vitae.png" alt="CV" />
+  <img src="docs/curriculum_vitae.png" alt="CV" />
 </div>
 
 ## Setup

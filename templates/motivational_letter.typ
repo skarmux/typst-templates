@@ -1,5 +1,5 @@
-#let data = toml("../templates/motivational_letter.toml")
-#let contact = toml("./assets/"+data.assets+"/contact.toml")
+#let data = toml("./data.toml")
+#let contact = toml("./assets/contact.toml")
 
 #import "./modules/page.typ": conf
 #import "./modules/colors.typ": colors

@@ -1,4 +1,5 @@
 .direnv
+*.pdf
 /*.toml
-/*.pdf
+/colors.yaml
 

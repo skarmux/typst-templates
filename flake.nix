@@ -1,74 +1,99 @@
 {
   description = "Skarmux Typst-Templates";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
-
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = inputs @ { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
     let 
       pkgs = nixpkgs.legacyPackages.${system};
 
       generate = pkgs.writeShellScriptBin "generate-pdf" ''
+        #!/usr/bin/env bash
         set -euo pipefail
 
-        SELECT=$1
-        ROOT=${self}
+        TMP_DIR=$(mktemp -d)
+        trap "rm -rf $TMP_DIR" EXIT
+        # NOTE: The typst compiler does follow symlinks, therefore all
+        #       .typ files need to be copied to the build location
+        cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
 
-        TOML="$ROOT/templates/$SELECT.toml"
-        TYP="$ROOT/typst/$SELECT.typ"
+        ln -s ''${ASSETS_PATH:-${self}/assets} $TMP_DIR/assets
 
-        # Give the user an editable document
-        USER_TOML=$(basename $TOML)
-        if [ ! -f $USER_TOML ]; then
-          cp $TOML $USER_TOML
-          chmod +w $USER_TOML
+        if [ -z "${"TEMPLATE:-"}" ]; then
+          echo "Choose a template:"
+          TEMPLATE=$(${pkgs.gum}/bin/gum choose \
+            "meeting_protocol" \
+            "application_letter" \
+            "motivational_letter" \
+            "curriculum_vitae" )
         fi
-        $EDITOR $USER_TOML
+        cp ${self}/templates/$TEMPLATE.typ $TMP_DIR/template.typ
 
-        # Temporary Typ with absolute path to USER_TOML
-        TMP_TYP=$(mktemp)
-        trap "rm $TMP_TYP" EXIT
-        echo '#let data = toml("'$(realpath $USER_TOML)'")' > $TMP_TYP
+        # offer language selection if there are translations available
+        shopt -s nullglob
+        FILES=(${self}/translations/$TEMPLATE.*.yaml)
+        if (( ''${#FILES[@]} > 0 )); then
+          if [ -z "${"LANGUAGE:-"}" ]; then
+            echo "Choose the template language:"
+            LANGUAGE=$(${pkgs.gum}/bin/gum choose "en" "de")
+          fi
+          ln -s ${self}/translations/$TEMPLATE.$LANGUAGE.yaml $TMP_DIR/lang.yaml
+        fi
+        unset FILES
 
-        # Omit first line and write typst code into TMP_TYP
-        # Replace relative with absolute paths
-        sed -e '1d' \
-            -e 's:"\./:"'$ROOT'/typst/:' \
-            $TYP >> $TMP_TYP
+        if [ -z "${"THEME:-"}" ]; then
+          echo "Choose a color scheme (light mode: latte):"
+          THEME=$(${pkgs.gum}/bin/gum choose \
+            "latte" \
+            "frappe" \
+            "macchiato" \
+            "mocha" )
+        fi
+        ln -s ${inputs.catppuccin-base16}/base16/$THEME.yaml $TMP_DIR/modules/colors.yaml
 
-        ${pkgs.typst}/bin/typst compile \
-          --root / \
-          --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
-          $TMP_TYP \
-          $(basename $TOML .toml).pdf
-      '';
+        # edit data
+        DATA=$TEMPLATE.toml
+        cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
 
-      meet = pkgs.writeShellScriptBin "gen-meet" ''
-        ${generate}/bin/generate-pdf meeting_protocol
-      '';
+        echo "Edit with live preview? (Launches evince pdf viewer)"
+        if ${pkgs.gum}/bin/gum confirm; then
+          ${pkgs.typst}/bin/typst watch \
+            --root $TMP_DIR \
+            --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
+            $TMP_DIR/template.typ \
+            $TMP_DIR/$TEMPLATE.pdf > /dev/null 2>&1 &
+          WATCH_PID=$!
 
-      cv = pkgs.writeShellScriptBin "gen-cv" ''
-        ${generate}/bin/generate-pdf curriculum_vitae
-      '';
+          while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
+            sleep 0.5
+          done
+          ${pkgs.evince}/bin/evince $TMP_DIR/$TEMPLATE.pdf &
+          EVINCE_PID=$!
 
-      application = pkgs.writeShellScriptBin "gen-application" ''
-        ${generate}/bin/generate-pdf application_letter
-      '';
+          $EDITOR $TMP_DIR/data.toml
 
-      motivation = pkgs.writeShellScriptBin "gen-motivation" ''
-        ${generate}/bin/generate-pdf motivational_letter
+          kill $WATCH_PID
+
+          # user might have manually exited the window
+          if kill -0 "$EVINCE_PID" 2> /dev/null; then
+            kill $EVINCE_PID
+          fi
+
+          # (Optional) backup to execution location
+          # TODO: Getting a symlink to work would be perfect...
+          cp -i $TMP_DIR/$TEMPLATE.pdf ./$TEMPLATE.pdf
+        else
+          $EDITOR $TMP_DIR/data.toml
+          cp -i $TMP_DIR/data.toml ./$TEMPLATE.toml
+          ${pkgs.typst}/bin/typst compile \
+            --root $TMP_DIR \
+            --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
+            $TMP_DIR/template.typ \
+            $TEMPLATE.pdf
+        fi
       '';
     in
     {
-      apps = {
-        meet = { type = "app"; program = "${meet}/bin/gen-meet"; };
-        cv = { type = "app"; program = "${cv}/bin/gen-cv"; };
-        application = { type = "app"; program = "${application}/bin/gen-application"; };
-        motivation = { type = "app"; program = "${motivation}/bin/gen-motivation"; };
-      };
+      apps.default = { type = "app"; program = "${generate}/bin/generate-pdf"; };
 
       devShells.default = pkgs.mkShell {
         buildInputs = [
@@ -80,4 +105,11 @@
       };
     }
   );
+
+  inputs = {
+    catppuccin-base16.flake = false;
+    catppuccin-base16.url = "github:catppuccin/base16?shallow=1";
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+  };
 }

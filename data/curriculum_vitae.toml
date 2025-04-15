@@ -1,6 +1,3 @@
-# curriculum_vitae.typ
-assets = "placeholder" # <- CHANGE ME
-
 interests = [ "" ]
 
 [[languages]]

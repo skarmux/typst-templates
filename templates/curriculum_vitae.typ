@@ -1,11 +1,9 @@
-#let data = toml("../templates/curriculum_vitae.toml")
-#let contact = toml("./assets/" + data.assets + "/contact.toml")
-#let glossary = yaml("./assets/glossary.yaml")
-#let headers = yaml("./curriculum_vitae_translations.yaml")
+#let data = toml("data.toml")
+#let contact = toml("assets/contact.toml")
+#let headers = yaml("lang.yaml")
 
-#import "./modules/page.typ": conf
-#import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, h6
+#import "modules/page.typ": conf, colors
+#import "modules/components.typ": header, hl, keyword, h6, glossary
 
 #show: conf
 #set par(justify: true)
@@ -27,15 +25,15 @@
       keyword(icon: ``, link(
         "https://www.linkedin.com/in/" + data.social.linkedin,
       )[#data.social.linkedin]), //
-      // keyword(icon: ``, link(
-      //   "https://www.xing.com/profile/" + data.social.xing + "/cv",
-      // )[#data.social.xing]),
+      keyword(icon: ``, link(
+        "https://www.xing.com/profile/" + data.social.xing + "/cv",
+      )[#data.social.xing]),
     ),
   ), //
-  //image("./assets/" + data.assets + "/profile.gif", width: 6em),
+  //image("./assets/profile.gif", width: 6em),
 )
 
-= #h6(headers.journey.at("de"))
+= #h6(headers.journey)
 #v(1em)
 #for job in data.jobs {
   box[#grid(
@@ -63,7 +61,7 @@
         )
         #text(size: 0.8em)[#job.tools.join("  ")]
         #line(
-          length: 100%, stroke: 1pt + gradient.linear(colors.base, colors.complement, colors.base),
+          length: 100%, stroke: 1pt + gradient.linear(colors.base00, colors.complement, colors.base00),
         )
         #box(width: 1fr)[
           #for achievement in job.achievements {
@@ -78,14 +76,14 @@
 
 #pagebreak()
 
-= #h6(headers.technologies.at("de"))
+= #h6(headers.technologies)
 #v(1em)
 #columns(
   3, gutter: 1em, for (index, pair) in glossary.pairs().enumerate() {
     let (category, subcategories) = pair
     box(
       stack(
-        dir: ttb, spacing: 0.5em, align(center, text(weight: "bold", headers.at(category).at("de"))), v(0.5em), rect(
+        dir: ttb, spacing: 0.5em, align(center, text(weight: "bold", headers.at(category))), v(0.5em), rect(
           inset: 0.75em, stroke: 1.5pt + gradient.linear(colors.complement, colors.primary, angle: 45deg), radius: 5pt, width: 100%, subcategories.pairs()
           // Remove empty subcategories
           .filter(elem => {
@@ -127,7 +125,7 @@
               }
               stack(
                 spacing: 0.5em, align(
-                  left, text(weight: "bold", fill: colors.primary, headers.at(elem.at(0)).at("de")),
+                  left, text(weight: "bold", fill: colors.primary, headers.at(elem.at(0))),
                 ), entries.map(e => e.at(1)).join("  "),
               )
             },
@@ -147,7 +145,7 @@
 #box(
   width: 1fr,
 )[
-  = #h6(headers.certificates.at("de"))
+  = #h6(headers.certificates)
   #v(1em)
   #for cert in data.certificates [
     #grid(
@@ -157,7 +155,7 @@
 ]
 #v(1.5em)
 
-= #h6(headers.activities.at("de"))
+= #h6(headers.activities)
 #v(1em)
 #align(
   center, stack(

@@ -1,5 +1,5 @@
-#let data = toml("../templates/application_letter.toml")
-#let contact = toml("./assets/"+data.assets+"/contact.toml")
+#let data = toml("./data.toml")
+#let contact = toml("./assets/contact.toml")
 
 #import "./modules/page.typ": conf
 #import "./modules/colors.typ": colors
@@ -30,4 +30,4 @@
 
 #data.content
 
-#image("./assets/"+data.assets+"/signature.png", height: 3em)
+#image("./assets/signature.png", height: 3em)

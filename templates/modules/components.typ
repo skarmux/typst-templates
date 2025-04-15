@@ -1,5 +1,5 @@
-#import "page.typ": colors
-#let glossary = yaml("../assets/glossary.yaml")
+#import "./page.typ": colors
+#let glossary = yaml("./glossary.yaml")
 
 #let keyword(icon: none, size: 1.618em, color: colors.complement, content) = {
   set align(horizon)
@@ -25,7 +25,7 @@
 #let hl(color: colors.complement) = {
     line(
       length: 100%, 
-      stroke: 1pt + gradient.linear(colors.base, color, colors.base),
+      stroke: 1pt + gradient.linear(colors.base00, color, colors.base00),
     )
 }
 
