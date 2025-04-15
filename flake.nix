@@ -16,7 +16,8 @@
         #       .typ files need to be copied to the build location
         cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
 
-        ln -s "${"ASSETS_PATH:-${self}/assets"}" $TMP_DIR/assets
+        # ln -s "${"ASSETS_PATH:-${self}/assets"}" $TMP_DIR/assets
+        ln -s $ASSETS_PATH $TMP_DIR/assets
 
         if [ -z "${"TEMPLATE:-"}" ]; then
           echo "Choose a template:"
