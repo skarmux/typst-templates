@@ -52,7 +52,13 @@
 
         # edit data
         DATA=$TEMPLATE.toml
-        cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
+        # use pre-existing user template whenever possible
+        # TODO: Again... Symlinking would be nice.
+        if [ ! -f $TEMPLATE.toml ]; then
+          cp $TEMPLATE.toml $TMP_DIR/data.toml
+        else
+          cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
+        fi
 
         echo "Edit with live preview? (Launches evince pdf viewer)"
         if ${pkgs.gum}/bin/gum confirm; then
