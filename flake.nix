@@ -57,7 +57,7 @@
           &> typst.log &
         WATCH_PID=$!
 
-        while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
+        while [ ! -f "$TMP_DIR/$FILENAME.pdf" ]; do
           sleep 0.5
         done
         ${pkgs.evince}/bin/evince "$TMP_DIR/$FILENAME.pdf" &> evince.log &
@@ -70,7 +70,7 @@
 
         # no harm in overriding generated pdf as long as the toml exists
         cp -vf "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
-        cp -vf $TMP_DIR/data.toml $FILENAME.toml
+        cp -vi $TMP_DIR/data.toml $FILENAME.toml
 
         rm -rf $TMP_DIR
 
