@@ -1,6 +1,6 @@
-#let data = toml("data.toml")
+#let data = toml("data/curriculum_vitae.toml")
 #let contact = toml("assets/contact.toml")
-#let headers = yaml("lang.yaml")
+#let headers = yaml("i18n/curriculum_vitae.yaml")
 
 #import "modules/page.typ": conf, colors
 #import "modules/components.typ": header, hl, keyword, h6, glossary
@@ -18,22 +18,15 @@
       icon: `󱋊`, data.languages.map(lang => [#lang.language#super[#lang.proficiency]])
       .join(text(fill: colors.primary, " | ")),
     ), stack(
-      dir: ltr, spacing: 2em, //
-      keyword(
-        icon: ``, link("https://github.com/" + data.social.github)[#data.social.github],
-      ), //
-      keyword(icon: ``, link(
-        "https://www.linkedin.com/in/" + data.social.linkedin,
-      )[#data.social.linkedin]), //
-      keyword(icon: ``, link(
-        "https://www.xing.com/profile/" + data.social.xing + "/cv",
-      )[#data.social.xing]),
-    ),
-  ), //
-  //image("./assets/profile.gif", width: 6em),
+      dir: ltr, spacing: 2em,
+      keyword(icon: ``, link(data.social.github)[#data.social.github]),
+      keyword(icon: ``, link(data.social.linkedin, )[#data.social.linkedin]),
+      keyword(icon: ``, link(data.social.xing)[#data.social.xing]),
+    )
+  )
 )
 
-= #h6(headers.journey)
+= #h6(headers.journey.at(data.lang))
 #v(1em)
 #for job in data.jobs {
   box[#grid(
@@ -76,14 +69,14 @@
 
 #pagebreak()
 
-= #h6(headers.technologies)
+= #h6(headers.technologies.at(data.lang))
 #v(1em)
 #columns(
   3, gutter: 1em, for (index, pair) in glossary.pairs().enumerate() {
     let (category, subcategories) = pair
     box(
       stack(
-        dir: ttb, spacing: 0.5em, align(center, text(weight: "bold", headers.at(category))), v(0.5em), rect(
+        dir: ttb, spacing: 0.5em, align(center, text(weight: "bold", headers.at(category).at(data.lang))), v(0.5em), rect(
           inset: 0.75em, stroke: 1.5pt + gradient.linear(colors.complement, colors.primary, angle: 45deg), radius: 5pt, width: 100%, subcategories.pairs()
           // Remove empty subcategories
           .filter(elem => {
@@ -125,7 +118,7 @@
               }
               stack(
                 spacing: 0.5em, align(
-                  left, text(weight: "bold", fill: colors.primary, headers.at(elem.at(0))),
+                  left, text(weight: "bold", fill: colors.primary, headers.at(elem.at(0)).at(data.lang)),
                 ), entries.map(e => e.at(1)).join("  "),
               )
             },
@@ -145,7 +138,7 @@
 #box(
   width: 1fr,
 )[
-  = #h6(headers.certificates)
+  = #h6(headers.certificates.at(data.lang))
   #v(1em)
   #for cert in data.certificates [
     #grid(
@@ -155,7 +148,7 @@
 ]
 #v(1.5em)
 
-= #h6(headers.activities)
+= #h6(headers.activities.at(data.lang))
 #v(1em)
 #align(
   center, stack(

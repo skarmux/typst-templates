@@ -1,9 +1,9 @@
-#let data = toml("./data.toml")
-#let contact = toml("./assets/contact.toml")
+#let data = toml("data/motivational_letter.toml")
+#let contact = toml("assets/contact.toml")
 
-#import "./modules/page.typ": conf
-#import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, h6
+#import "modules/page.typ": conf
+#import "modules/colors.typ": colors
+#import "modules/components.typ": header, hl, keyword, h6
 
 #show: conf
 
@@ -32,6 +32,6 @@
     data.interest,
     data.qualification,
     data.conclusion,
-    image("./assets/"+data.assets+"/signature.png", height: 3em)
+    image("./assets/signature.png", height: 3em)
 )
 

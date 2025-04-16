@@ -1,5 +1,5 @@
-#let data = toml("data.toml")
-#let headers = yaml("lang.yaml")
+#let data = toml("data/meeting_protocol.toml")
+#let headers = yaml("i18n/meeting_protocol.yaml")
 
 #import "modules/page.typ": conf
 #import "modules/colors.typ": colors
@@ -35,7 +35,7 @@
   stack(
     dir: ttb,
     spacing: 1em,
-    h6(headers.title),
+    h6(headers.title.at(data.lang)),
     keyword(
         icon: "󰃭", size: 1em, 
         color: colors.base05, 

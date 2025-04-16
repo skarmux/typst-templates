@@ -2,4 +2,7 @@
 *.pdf*
 *.log
 /*.toml*
+/templates/data.toml
+/templates/lang.yaml
+/templates/modules/colors.yaml
 

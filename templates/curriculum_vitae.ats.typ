@@ -1,6 +1,6 @@
-#let data = toml("data.toml")
+#let data = toml("data/curriculum_vitae.toml")
 #let contact = toml("assets/contact.toml")
-#let headers = yaml("lang.yaml")
+#let headers = yaml("i18n/curriculum_vitae.yaml")
 
 //==============================================================================
 

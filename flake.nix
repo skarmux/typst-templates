@@ -15,80 +15,97 @@
         #       Same goes for .toml files. But .yaml is fine though!
         
         TMP_DIR=$(mktemp -d)
+        trap "rm -rf $TMP_DIR" EXIT
 
-        # prepare data file for editing
+        # DATA
+        
+        mkdir -p $TMP_DIR/data
         if [[ ''${1+x} ]] && [[ -f "$1" ]]; then
           CONFIG_JSON=$(sed -n '1s/^# //p' $1)
-
           TEMPLATE=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".template")
-          LANGUAGE=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".lang")
           THEME=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".theme")
           ASSETS=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".assets")
           FILENAME=$(basename $1 .toml)
-
-          cp $1 $TMP_DIR/data.toml
+          cp $1 "$TMP_DIR/data/$TEMPLATE.toml"
         else
-          TEMPLATE=$(basename $(${pkgs.gum}/bin/gum file ${self}/templates/) .typ)
-          LANGUAGE=$(${pkgs.gum}/bin/gum choose "en" "de")
+          TEMPLATE=$(basename $(${pkgs.gum}/bin/gum choose \
+            "curriculum_vitae" \
+            "meeting_protocol" \
+            "application_letter" \
+            "motivational_letter" \
+            ) .typ)
           THEME=$(${pkgs.gum}/bin/gum choose "latte" "frappe" "macchiato" "mocha" )
-          ASSETS=${self}/assets
+          ASSETS=${self}/templates/assets
           FILENAME=$(basename $TEMPLATE .typ)
-
-          echo -n "# { \"template\": \"$TEMPLATE\"," > $TMP_DIR/data.toml
-          echo -n "\"lang\": \"$LANGUAGE\"," >> $TMP_DIR/data.toml
-          echo -n "\"theme\": \"$THEME\"," >> $TMP_DIR/data.toml
-          echo "\"assets\": \"$ASSETS\" }" >> $TMP_DIR/data.toml
-          echo "" >> $TMP_DIR/data.toml
-          cat ${self}/data/$TEMPLATE.toml >> $TMP_DIR/data.toml
+          if [ ! -f "$FILENAME.toml" ]; then
+            # file exists and user probably didn't select it as input parameter
+            # FIXME bold assumption. accidents might happen. confusion and such
+            echo -n "# { \"template\": \"$TEMPLATE\"," > $FILENAME.toml
+            echo -n "\"theme\": \"$THEME\"," >> $FILENAME.toml
+            echo "\"assets\": \"$ASSETS\" }" >> $FILENAME.toml
+            echo "" >> $FILENAME.toml
+            cat ${self}/templates/data/$TEMPLATE.toml >> $FILENAME.toml
+          fi
+          cp $FILENAME.toml "$TMP_DIR/data/$TEMPLATE.toml"
         fi
 
-        cp ${self}/templates/$TEMPLATE.typ $TMP_DIR/template.typ
-        if [ -f "${self}/translations/$TEMPLATE.$LANGUAGE.yaml" ]; then
-          ln -s "${self}/translations/$TEMPLATE.$LANGUAGE.yaml" $TMP_DIR/lang.yaml
-        fi
-        ln -s $ASSETS $TMP_DIR/assets
+        # TYPST
+        
+        cp ${self}/templates/$TEMPLATE.typ "$TMP_DIR/$TEMPLATE.typ"
         cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
+        ln -s $ASSETS $TMP_DIR/assets
+        ln -s ${self}/templates/i18n $TMP_DIR/i18n
         ln -s "${inputs.catppuccin-base16}/base16/$THEME.yaml" $TMP_DIR/modules/colors.yaml
 
-        ${pkgs.typst}/bin/typst watch \
-          --root $TMP_DIR \
+        # COMPILE
+        
+        ${pkgs.typst}/bin/typst watch --root $TMP_DIR \
           --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
-          "$TMP_DIR/template.typ" \
-          "$TMP_DIR/$FILENAME.pdf" \
-          &> typst.log &
+          "$TMP_DIR/$TEMPLATE.typ" $FILENAME.pdf > typst.log 2>&1 &
         WATCH_PID=$!
 
-        while [ ! -f "$TMP_DIR/$FILENAME.pdf" ]; do
-          sleep 0.5
-        done
-        ${pkgs.evince}/bin/evince "$TMP_DIR/$FILENAME.pdf" &> evince.log &
-        EVINCE_PID=$!
+        while [ ! -f "$FILENAME.pdf" ]; do sleep 0.5; done
+        ${pkgs.evince}/bin/evince $FILENAME.pdf > /dev/null 2>&1 &
 
-        $EDITOR $TMP_DIR/data.toml
+        $EDITOR "$TMP_DIR/data/$TEMPLATE.toml"
+        cp -f "$TMP_DIR/data/$TEMPLATE.toml" $FILENAME.toml
 
-        kill $WATCH_PID
-        kill $EVINCE_PID
-
-        # no harm in overriding generated pdf as long as the toml exists
-        cp -v --backup=existing --suffix=.orig "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
-        cp -v --backup=existing --suffix=.orig $TMP_DIR/data.toml $FILENAME.toml
-
-        rm -rf $TMP_DIR
-
-        # cleanup
-        rm typst.log evince.log
+        # let typst watch churn a little longer for the final changes
+        # made to the toml
+        sleep 0.5
+        kill -15 $WATCH_PID
       '';
     in
     {
-      apps.default = { type = "app"; program = "${generate}/bin/generate-pdf"; };
+      apps.default = {
+        type = "app";
+        program = "${generate}/bin/generate-pdf";
+      };
 
       devShells.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.typst
-          pkgs.typst-lsp
-          pkgs.taplo
-          pkgs.nixd
+        buildInputs = with pkgs; [
+          typst
+          typst-lsp
+          taplo
+          nixd
         ];
+        TYPST_FONT_PATHS = "${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })}";
+        THEME = "frappe";
+        shellHook = ''
+          ln -fs ${inputs.catppuccin-base16}/base16/$THEME.yaml ./templates/modules/colors.yaml
+
+          WATCH_PIDS=()
+          typst watch templates/curriculum_vitae.typ curriculum_vitae.pdf > typst.log 2>&1 &
+          WATCH_PIDS+=$!
+          typst watch templates/application_letter.typ application_letter.pdf > typst.log 2>&1 &
+          WATCH_PIDS+=$!
+          typst watch templates/motivational_letter.typ motivational_letter.pdf > typst.log 2>&1 &
+          WATCH_PIDS+=$!
+          typst watch templates/meeting_protocol.typ meeting_protocol.pdf > typst.log 2>&1 &
+          WATCH_PIDS+=$!
+
+          trap "for pid in "''${WATCH_PIDS[@]}"; do kill $pid; done" EXIT
+        '';
       };
     }
   );

@@ -1,9 +1,9 @@
-#let data = toml("./data.toml")
-#let contact = toml("./assets/contact.toml")
+#let data = toml("data/application_letter.toml")
+#let contact = toml("assets/contact.toml")
 
-#import "./modules/page.typ": conf
-#import "./modules/colors.typ": colors
-#import "./modules/components.typ": header, hl, keyword, h6
+#import "modules/page.typ": conf
+#import "modules/colors.typ": colors
+#import "modules/components.typ": header, hl, keyword, h6
 
 #show: conf
 
