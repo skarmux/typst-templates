@@ -12,6 +12,7 @@
 
         # NOTE: The typst compiler does follow symlinks, therefore all
         #       .typ files need to be copied to the build location
+        #       Same goes for .toml files. But .yaml is fine though!
         
         TMP_DIR=$(mktemp -d)
 
