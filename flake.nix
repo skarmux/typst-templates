@@ -35,6 +35,7 @@
           echo -n "\"lang\": \"$LANGUAGE\"," >> $TMP_DIR/data.toml
           echo -n "\"theme\": \"$THEME\"," >> $TMP_DIR/data.toml
           echo "\"assets\": \"$ASSETS\" }" >> $TMP_DIR/data.toml
+          echo "" >> $TMP_DIR/data.toml
           cat ${self}/data/$TEMPLATE.toml >> $TMP_DIR/data.toml
         fi
 
