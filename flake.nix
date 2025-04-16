@@ -10,8 +10,13 @@
         #!/usr/bin/env bash
         set -euo pipefail
 
+        # NOTE: The typst compiler does follow symlinks, therefore all
+        #       .typ files need to be copied to the build location
+        
         TMP_DIR=$(mktemp -d)
-        trap "rm -rf $TMP_DIR" EXIT
+        
+        # make sure user-entered data is returned and tmp dir gets cleared
+        trap "cp -f $TMP_DIR/data.toml $FILENAME.toml; rm -rf $TMP_DIR; kill $WATCH_PID; kill $EVINCE_PID" EXIT
 
         # prepare data file for editing
         if [[ ''${1+x} ]] && [[ -f "$1" ]]; then
@@ -44,45 +49,30 @@
           ln -s "${self}/translations/$TEMPLATE.$LANGUAGE.yaml" $TMP_DIR/lang.yaml
         fi
         ln -s $ASSETS $TMP_DIR/assets
-        # NOTE: The typst compiler does follow symlinks, therefore all
-        #       .typ files need to be copied to the build location
         cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
         ln -s "${inputs.catppuccin-base16}/base16/$THEME.yaml" $TMP_DIR/modules/colors.yaml
 
-        echo "Enable live preview? (Launches evince pdf viewer)"
-        if ${pkgs.gum}/bin/gum confirm; then
-          ${pkgs.typst}/bin/typst watch \
-            --root $TMP_DIR \
-            --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
-            "$TMP_DIR/template.typ" \
-            "$TMP_DIR/$FILENAME.pdf" \
-            > typst.log &
-          WATCH_PID=$!
-          trap "if kill -0 $WATCH_PID 2> /dev/null; then kill $WATCH_PID; fi" EXIT
+        ${pkgs.typst}/bin/typst watch \
+          --root $TMP_DIR \
+          --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
+          "$TMP_DIR/template.typ" \
+          "$TMP_DIR/$FILENAME.pdf" \
+          > typst.log &
+        WATCH_PID=$!
 
-          while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
-            sleep 0.5
-          done
-          ${pkgs.evince}/bin/evince "$TMP_DIR/$FILENAME.pdf" > evince.log &
-          EVINCE_PID=$!
+        while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
+          sleep 0.5
+        done
+        ${pkgs.evince}/bin/evince "$TMP_DIR/$FILENAME.pdf" > evince.log &
+        EVINCE_PID=$!
 
-          $EDITOR $TMP_DIR/data.toml
+        $EDITOR $TMP_DIR/data.toml
 
-          kill $WATCH_PID
-          kill $EVINCE_PID
+        kill $WATCH_PID
+        kill $EVINCE_PID
 
-          # (Optional with -i) backup to execution location
-          # TODO: Getting a symlink to work would be perfect...
-          cp -i "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
-        else
-          $EDITOR $TMP_DIR/data.toml
-          cp -i $TMP_DIR/data.toml ./$FILENAME.toml
-          ${pkgs.typst}/bin/typst compile \
-            --root $TMP_DIR \
-            --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
-            $TMP_DIR/template.typ \
-            $FILENAME.pdf
-        fi
+        # no harm in overriding generated pdf as long as the toml exists
+        cp -f "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
 
         # cleanup
         rm typst.log evince.log
