@@ -12,7 +12,7 @@ xing = ""
 [[jobs]]
 title = ""
 location = ""
-span = { begin = "01.2100", end = "01.2010" }
+span = { begin = "01.2010", end = "12.2010" }
 highlights = [ #
     "",
     "",
@@ -43,4 +43,3 @@ achievements = [
 title = ""
 span = { begin = "01.2010", end = "01.2010" }
 location = ""
-
