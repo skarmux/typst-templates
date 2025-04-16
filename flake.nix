@@ -12,86 +12,79 @@
 
         TMP_DIR=$(mktemp -d)
         trap "rm -rf $TMP_DIR" EXIT
+
+        # prepare data file for editing
+        if [[ ''${1+x} ]] && [[ -f "$1" ]]; then
+          CONFIG_JSON=$(sed -n '1s/^# //p' $1)
+
+          TEMPLATE=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".template")
+          LANGUAGE=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".lang")
+          THEME=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".theme")
+          ASSETS=$(echo $CONFIG_JSON | ${pkgs.jq}/bin/jq -r ".assets")
+          FILENAME=$(basename $1 .toml)
+
+          cp $1 $TMP_DIR/data.toml
+        else
+          TEMPLATE=$(basename $(${pkgs.gum}/bin/gum file ${self}/templates/) .typ)
+          LANGUAGE=$(${pkgs.gum}/bin/gum choose "en" "de")
+          THEME=$(${pkgs.gum}/bin/gum choose "latte" "frappe" "macchiato" "mocha" )
+          ASSETS=${self}/assets
+          FILENAME=$(basename $TEMPLATE .typ)
+
+          echo -n "# { \"template\": \"$TEMPLATE\"," > $TMP_DIR/data.toml
+          echo -n "\"lang\": \"$LANGUAGE\"," >> $TMP_DIR/data.toml
+          echo -n "\"theme\": \"$THEME\"," >> $TMP_DIR/data.toml
+          echo "\"assets\": \"$ASSETS\" }" >> $TMP_DIR/data.toml
+          cat ${self}/data/$TEMPLATE.toml >> $TMP_DIR/data.toml
+        fi
+
+        cp ${self}/templates/$TEMPLATE.typ $TMP_DIR/template.typ
+        if [ -f "${self}/translations/$TEMPLATE.$LANGUAGE.yaml" ]; then
+          ln -s "${self}/translations/$TEMPLATE.$LANGUAGE.yaml" $TMP_DIR/lang.yaml
+        fi
+        ln -s $ASSETS $TMP_DIR/assets
         # NOTE: The typst compiler does follow symlinks, therefore all
         #       .typ files need to be copied to the build location
         cp -r --no-preserve=all ${self}/templates/modules $TMP_DIR/modules
-
-        # ln -s "${"ASSETS_PATH:-${self}/assets"}" $TMP_DIR/assets
-        ln -s $ASSETS_PATH $TMP_DIR/assets
-
-        if [ -z "${"TEMPLATE:-"}" ]; then
-          echo "Choose a template:"
-          TEMPLATE=$(${pkgs.gum}/bin/gum choose \
-            "meeting_protocol" \
-            "application_letter" \
-            "motivational_letter" \
-            "curriculum_vitae" )
-        fi
-        cp ${self}/templates/$TEMPLATE.typ $TMP_DIR/template.typ
-
-        # offer language selection if there are translations available
-        shopt -s nullglob
-        FILES=(${self}/translations/$TEMPLATE.*.yaml)
-        if (( ''${#FILES[@]} > 0 )); then
-          if [ -z "${"LANGUAGE:-"}" ]; then
-            echo "Choose the template language:"
-            LANGUAGE=$(${pkgs.gum}/bin/gum choose "en" "de")
-          fi
-          ln -s ${self}/translations/$TEMPLATE.$LANGUAGE.yaml $TMP_DIR/lang.yaml
-        fi
-        unset FILES
-
-        if [ -z "${"THEME:-"}" ]; then
-          echo "Choose a color scheme (light mode: latte):"
-          THEME=$(${pkgs.gum}/bin/gum choose \
-            "latte" \
-            "frappe" \
-            "macchiato" \
-            "mocha" )
-        fi
-        ln -s ${inputs.catppuccin-base16}/base16/$THEME.yaml $TMP_DIR/modules/colors.yaml
-
-        # edit data
-        # use pre-existing user template whenever possible
-        # TODO: Again... Symlinking would be nice.
-        if [ -f "./$TEMPLATE.toml" ]; then
-          echo "Using pre-existing data"
-          cp ./$TEMPLATE.toml $TMP_DIR/data.toml
-        else
-          cp --no-preserve=all ${self}/data/$TEMPLATE.toml $TMP_DIR/data.toml
-        fi
+        ln -s "${inputs.catppuccin-base16}/base16/$THEME.yaml" $TMP_DIR/modules/colors.yaml
 
         echo "Enable live preview? (Launches evince pdf viewer)"
         if ${pkgs.gum}/bin/gum confirm; then
           ${pkgs.typst}/bin/typst watch \
             --root $TMP_DIR \
             --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
-            $TMP_DIR/template.typ \
-            $TMP_DIR/$TEMPLATE.pdf > typst.out.log 2> typst.error.log &
+            "$TMP_DIR/template.typ" \
+            "$TMP_DIR/$FILENAME.pdf" \
+            > typst.log &
           WATCH_PID=$!
           trap "if kill -0 $WATCH_PID 2> /dev/null; then kill $WATCH_PID; fi" EXIT
 
           while [ ! -f "$TMP_DIR/$TEMPLATE.pdf" ]; do
             sleep 0.5
           done
-          ${pkgs.evince}/bin/evince $TMP_DIR/$TEMPLATE.pdf > evince.out.log 2> evince.error.log &
+          ${pkgs.evince}/bin/evince "$TMP_DIR/$FILENAME.pdf" > evince.log &
+          EVINCE_PID=$!
 
           $EDITOR $TMP_DIR/data.toml
 
           kill $WATCH_PID
+          kill $EVINCE_PID
 
-          # (Optional) backup to execution location
+          # (Optional with -i) backup to execution location
           # TODO: Getting a symlink to work would be perfect...
-          cp -i $TMP_DIR/$TEMPLATE.pdf ./$TEMPLATE.pdf
+          cp -i "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
         else
           $EDITOR $TMP_DIR/data.toml
-          cp -i $TMP_DIR/data.toml ./$TEMPLATE.toml
+          cp -i $TMP_DIR/data.toml ./$FILENAME.toml
           ${pkgs.typst}/bin/typst compile \
             --root $TMP_DIR \
             --font-path ${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })} \
             $TMP_DIR/template.typ \
-            $TEMPLATE.pdf
+            $FILENAME.pdf
         fi
+
+        # cleanup
+        rm typst.log evince.log
       '';
     in
     {
