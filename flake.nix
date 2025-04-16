@@ -69,8 +69,8 @@
         kill $EVINCE_PID
 
         # no harm in overriding generated pdf as long as the toml exists
-        cp -vf "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
-        cp -vi $TMP_DIR/data.toml $FILENAME.toml
+        cp -v --backup=existing --suffix=.orig "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
+        cp -v --backup=existing --suffix=.orig $TMP_DIR/data.toml $FILENAME.toml
 
         rm -rf $TMP_DIR
 
