@@ -48,7 +48,7 @@
 } 
 
 #let company_header(assets_source) = {
-    image("../assets/"+assets_source+"/logo.svg", height: 6em) 
+    image("../assets/logo.svg", height: 6em) 
 }
 
 #let header(contact) = {

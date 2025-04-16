@@ -5,9 +5,9 @@ language = ""
 proficiency = "" # C1 | C2 | ...
 
 [social]
-github = ""
-linkedin = ""
-xing = ""
+github = "https://github.com/<username>"
+linkedin = "https://linkedin.com/in/<username>-<id>"
+xing = "https://xing.com/profile/<username>/cv"
 
 [[jobs]]
 title = ""
