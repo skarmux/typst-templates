@@ -14,9 +14,6 @@
         #       .typ files need to be copied to the build location
         
         TMP_DIR=$(mktemp -d)
-        
-        # make sure user-entered data is returned and tmp dir gets cleared
-        trap "cp -f $TMP_DIR/data.toml $FILENAME.toml; rm -rf $TMP_DIR; kill $WATCH_PID; kill $EVINCE_PID" EXIT
 
         # prepare data file for editing
         if [[ ''${1+x} ]] && [[ -f "$1" ]]; then
@@ -72,7 +69,10 @@
         kill $EVINCE_PID
 
         # no harm in overriding generated pdf as long as the toml exists
-        cp -f "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
+        cp -vf "$TMP_DIR/$FILENAME.pdf" ./$FILENAME.pdf
+        cp -vf $TMP_DIR/data.toml $FILENAME.toml
+
+        rm -rf $TMP_DIR
 
         # cleanup
         rm typst.log evince.log
