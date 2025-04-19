@@ -1,0 +1,17 @@
+[[participants]]
+name = ""
+# mail = ""
+# role = "" # mod | log
+
+[meeting]
+room = ""
+topic = ""
+issue = ""
+findings = [
+]
+decisions = [
+]
+
+[[tasks]]
+description = ""
+responsible = ""

@@ -36,3 +36,8 @@ If you pass a TOML file that one will be used:
 - [ ] Digital signing of meeting protocols. (Each participant can sign with a FIDO key.)
 - [ ] Coloring of graphics (svg, png, etc) in THEME color.
 - [ ] Allow changing of primary and complementary colors.
+
+## Acknowledgements
+
+- Color scheme based on [Catppuccin](https://github.com/catppuccin/catppuccin), © 2021 Catppuccin. Licensed under the MIT License. See `licenses/CATPPUCCIN_LICENSE` for details.
+- As well as the [cat footer graphic](https://github.com/catppuccin/catppuccin/blob/main/assets/footers/gray0_ctp_on_line.svg)

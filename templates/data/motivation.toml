@@ -1,0 +1,51 @@
+date = "19.04.2025"
+
+[contact]
+name = "Vorname Nachname"
+profession = "Berufsbezeichnung"
+email = "email@example.com"
+postal = "12345"
+city = "Stadtname"
+homepage = "deine-webseite.de"
+github = "github.com/benutzername"
+linkedin = "linkedin.com/in/benutzername"
+xing = "xing.com/profile/Vorname_Nachname/cv"
+
+[company]
+contact = "Maxine Muster"
+company = "Musterfabrik GmbH"
+postal = "12345"
+city = "Musterstadt"
+email = "m.muster@musterfabrik.com"
+interest = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae."""
+
+qualification = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus. Cras placerat dignissim risus, quis 
+ultricies lorem rutrum quis. Vivamus porttitor urna urna, in aliquam lacus 
+lobortis at. Aenean elementum placerat nisi, nec tempor magna mattis vitae."""
+
+conclusion = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum euismod 
+fermentum. Fusce cursus, diam quis fermentum semper, sem lectus feugiat tellus, 
+quis gravida mauris nulla sit amet metus.
+
+Best Regards,"""

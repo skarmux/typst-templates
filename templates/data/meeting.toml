@@ -1,0 +1,51 @@
+[meeting]
+room = "Room 4.07"
+topic = "Renovating our kitchen"
+
+[[meeting.participants]]
+name = "Max Mustermann"
+role = "mod"
+
+[[meeting.participants]]
+name = "Erika Musterfrau"
+role = "log"
+
+[[meeting.participants]]
+name = "Hans Wurst"
+
+[[meeting.participants]]
+name = "Lena Beispiel"
+
+[[meeting.agendas]]
+issue = "Who uses the fridge?"
+findings = [
+    "Something is wrong.",
+    "I can feel it."
+]
+decisions = [
+    "Gonna do this and that.",
+    "Have to do another thing."
+]
+
+[[meeting.agendas.tasks]]
+description = "Find Jason."
+responsible = "Hans Wurst"
+
+[[meeting.agendas]]
+issue = "Do we need a new kitchen?"
+findings = [
+    "Now this looks like a job for me.",
+    "Everybody just follow me."
+]
+decisions = [
+    "We will buy a new microwave in sports car red.",
+    "Throw away half of the dull kitchen knifes."
+]
+
+[[meeting.agendas.tasks]]
+description = "Go buy the microwave."
+responsible = "Lena Beispiel"
+
+[[meeting.agendas.tasks]]
+description = "Sharpen half the knives and throw away the rest."
+responsible = "Max Mustermann"

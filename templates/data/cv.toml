@@ -1,0 +1,129 @@
+[contact]
+name = "Vorname Nachname"
+profession = "Berufsbezeichnung"
+email = "email@example.com"
+phone = "+49 1234 567890"
+street = "Beispielstraße 1"
+postal = "12345"
+city = "Stadtname"
+birthdate = "TT.MM.JJJJ"
+homepage = "deine-webseite.de"
+github = "github.com/benutzername"
+linkedin = "linkedin.com/in/benutzername"
+xing = "xing.com/profile/Vorname_Nachname/cv"
+
+
+[[jobs]]
+title = "Software Entwickler"
+location = "Musterfirma 1"
+span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
+highlights = [ #
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+]
+tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+]
+achievements = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+]
+
+[[jobs]]
+title = "Software Entwickler"
+location = "Musterfirma 1"
+span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
+highlights = [ #
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+]
+tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+]
+achievements = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+]
+
+[[jobs]]
+title = "Software Entwickler"
+location = "Musterfirma 1"
+span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
+highlights = [ #
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+]
+tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+]
+achievements = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+]
+
+[[jobs]]
+title = "Software Entwickler"
+location = "Musterfirma 1"
+span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
+highlights = [ #
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+]
+tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+]
+achievements = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+]
+
+[[jobs]]
+title = "Software Entwickler"
+location = "Musterfirma 2"
+span = { duration = "3 Jahre", begin = "01.2014", end = "01.2017" }
+highlights = [ #
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+]
+tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+]
+achievements = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra velit ut nisl lacinia, vitae pharetra nisl laoreet. Donec molestie magna vitae elit pulvinar, nec pellentesque turpis mollis. Donec id",
+]
+
+[[certificates]]
+title = "Muster Abschluss 1"
+location = "Muster Hochschule für Musterkunde"
+
+[[certificates]]
+title = "Muster Abschluss 2"
+location = "Muster Hochschule für Musterkunde"
+
+[[languages]]
+language = "Deutsch"
+proficiency = "C2 - Muttersprache"
+
+[[languages]]
+language = "Englisch"
+proficiency = "C2 - Fließend"

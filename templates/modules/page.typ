@@ -1,8 +1,16 @@
-#import "colors.typ": colors
-
+// DIN-NORM 5008
 #let conf(doc) = [
-  #set page(paper: "a4", margin: (left: 2.5cm, rest: 2cm), fill: colors.base00)
-  #set text( font: "ProFontWindows Nerd Font", size: 11pt, fill: colors.base05, ligatures: false )
-  #set list(marker: text(fill: colors.complement)[])
+  #set page(
+    paper: "a4",
+    margin: (left: 2.5cm, rest: 2cm),
+  )
+  #set text(
+    size: 11pt,
+    ligatures: false,
+  )
+  #set par(
+    spacing: 2em,
+    leading: 1.15em,
+  )
   #doc
 ]
