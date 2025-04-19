@@ -10,32 +10,36 @@ machine. Contents and typeface are stored separately and styling is readonly.
 ## Usage
 
 ```sh
+# Create a new template and start editing right away
 nix run github:skarmux/typst-templates
+
+# or continue editing a templae you already have
+nix run github:skarmux/typst-templates -- [FILE]
 ```
 
-You will be prompted for any missing configuration. Your selection will be parsed into
-a JSON at the top of your TOML file. You can change it there with caution.
-- `{ ..., "assets": "<path>" }` (Recommended) Set the absolute path to your own assets directory.
+Your configured `$EDITOR` (and optionally a live preview) will open with your own
+or a newly created TOML file where you can fill your data in.
 
-Your configured `$EDITOR` (and optionally a live preview) will open with a
-TOML file where you can fill your data in.
+Currently hardcoded to only convert `cv` templates.
 
-The `data.toml` will reside in a temporary location under `/tmp` until you close the editor.
-Once done, your changes `<filename>.toml` or `<template>.toml` will be stored at your current location.
-
-If you pass a TOML file that one will be used:
-`nix run github:skarmux/typst-templates -- <filename>.toml`
+Attention! Changes won't be written to your file until the editor is closed. Yes,
+it sucks. I need to figure that one out...
 
 ## TODO's
 
-- [ ] Make the script run without nix commands by pulling the script out of the nix flake.
+- [x] ~~Make the script run without nix commands by pulling the script out of the nix flake.~~
+  - No safe way to make sure the correct packages are installed. That's why I chose to use Nix after all.
 - [ ] Copy placeholder assets directory to current location for easier replacement of contents.
 - [x] Allow renaming of generated PDF and data TOML.
-- [ ] Automatically fill the date in meeting protocols.
+- [x] ~~Automatically fill the date in meeting protocols.~~
+  - Not working in nix session. Unless it actualle is 01.01.1980
 - [ ] AI checking of written text.
 - [ ] Digital signing of meeting protocols. (Each participant can sign with a FIDO key.)
-- [ ] Coloring of graphics (svg, png, etc) in THEME color.
-- [ ] Allow changing of primary and complementary colors.
+- [x] Coloring of graphics (svg, png, etc) in THEME color.
+  - New `colorize` function in `model/components.typ`
+- [x] Allow changing of primary and complementary colors.
+  - Can be changed with `typst compile --inputs flavor=frappe --inputs accent=blue`.
+  - The values are still very much hardcoded in the Nix Shell Script command.
 
 ## Acknowledgements
 
