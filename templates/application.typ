@@ -18,10 +18,12 @@
   #header(contact)
   
   #block(inset: (left: 2.5cm, right: 2cm))[
-    #text(fill: colors.yellow, weight: "bold", company.company)\
-    #icon(``, label: i18n("Name"), [#company.contact])\
-    #icon(`󰁥`, label: i18n("Mail"), [#company.email])\
-    #icon(``, label: i18n("City"), [#company.postal #company.city])\
+    #stack(spacing: 1.15em,
+      text(fill: colors.yellow, weight: "bold", company.company),
+      icon(``, label: i18n("Name"), [#company.contact]),
+      icon(`󰁥`, label: i18n("Mail"), [#company.email]),
+      icon(``, label: i18n("City"), [#company.postal #company.city]),
+    )
 
     #let cat = colorize(read("assets/catppuccin_footer.svg"), colors.text)
     #align(center, image.decode(cat))
