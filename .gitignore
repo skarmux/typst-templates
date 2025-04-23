@@ -1,5 +1,4 @@
-.direnv
-*.pdf*
+*.pdf
 *.log
-/*.toml*
+/*.toml
 

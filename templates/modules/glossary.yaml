@@ -1,6 +1,7 @@
 code:
   language:
     - [, Java]
+    - [, C]
     - [, C++]
     - [, Rust]
     - [󱄅, Nix]
@@ -9,9 +10,10 @@ code:
     - [󰌠, Python]
     - [󰌞, JavaScript]
     - [󰛦, TypeScript]
-    - [󱆃, Bash]
+    - [, Bash]
     - [, PHP]
     - [󰨡, Visual Basic Script]
+    - [󰢱, Lua]
 devops:
   cicd:
     - [, Jenkins]
@@ -43,6 +45,7 @@ frontend:
     - [, Twig]
     - [󰗀, Askama]
     - [󰗀, Jinja]
+    - [, Typst]
   style:
     - [, CSS]
     - [, SCSS]
@@ -105,6 +108,7 @@ frameworks:
     - [, Axum]
     - [󰫦, Symfony]
     - [󰜈, React]
+    - [, Node.js]
   graphics:
     - [󱂛, OpenGL]
     - [󱂛, Vulkan]
@@ -123,3 +127,4 @@ development:
     - [, Neovim]
     - [󰚄, Helix]
     - [, Visual Studio Code]
+    - [, BPMN Engine]

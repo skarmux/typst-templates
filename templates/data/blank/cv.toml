@@ -1,0 +1,25 @@
+[contact]
+name = ""
+profession = ""
+email = ""
+postal = ""
+city = ""
+# homepage = "" # deine-webseite.de
+# github = "" # github.com/<username>
+# linkedin = "" # linkedin.com/in/<username>
+# xing = "" # xing.com/profile/<username>/cv
+
+[[jobs]]
+location = "" # company or else
+title = ""
+span = { duration = "", begin = "", end = "" } # ex. duration `2 Years 1 Month`, begin/end: `MM.YYYY`
+tools = []
+achievements = []
+
+[[certificates]]
+title = "" # certified title
+location = "" # institute or else
+
+[[languages]]
+language = ""
+proficiency = "" # C1 | C2 - Fluent | etc.

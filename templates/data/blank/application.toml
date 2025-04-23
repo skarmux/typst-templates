@@ -1,0 +1,27 @@
+date = "" # ex. `DD.MM.YYYY`
+
+[contact]
+name = ""
+profession = ""
+email = ""
+postal = ""
+city = ""
+# homepage = "" # deine-webseite.de
+# github = "" # github.com/<username>
+# linkedin = "" # linkedin.com/in/<username>
+# xing = "" # xing.com/profile/<username>/cv
+
+[company]
+company = ""
+contact = "" # contact person (likely HR representative)
+postal = "" # zip code
+city = ""
+email = ""
+vacancy = "" # ex. `Software Developer`
+content = """
+Hello,
+
+...
+
+With Best Regards,
+"""
