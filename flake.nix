@@ -105,10 +105,9 @@
           taplo
           nixd
           evince
-          (nerdfonts.override { fonts = [ "ProFont" ]; })
         ];
         allowUnfree = true;
-        TYPST_FONT_PATHS = "${pkgs.corefonts}:${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })}";
+        TYPST_FONT_PATHS = "${pkgs.noto-fonts-color-emoji}:${pkgs.corefonts}:${(pkgs.nerdfonts.override { fonts = [ "ProFont" ]; })}";
         shellHook = ''
           trap 'kill 0' EXIT
           mkdir -p pdf
