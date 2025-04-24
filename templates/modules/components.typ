@@ -3,18 +3,14 @@
 #colors.insert("accent", colors.at(sys.inputs.at("accent", default: "blue")))
 
 #let icon(glyph, color: colors.accent, size: 1.5em, label: none, content) = box(
-  align(
-    horizon,
-    stack(
-      dir: ltr,
-      spacing: 1.15em,
-      text(fill: color, size, glyph),
-      if sys.inputs.at("label", default: "false") == "true" and label != none [
-        #text(fill: color, weight: "bold")[#label:]
-        #content
-      ] else { content },
-    )
-  )
+  align( horizon)[
+    #text(font: "ProFontWindows Nerd Font Mono", fill: color, size, glyph)
+    #h(0.5em)
+    #if sys.inputs.at("label", default: "false") == "true" and label != none [
+      #text(fill: color, weight: "bold")[#label: ]
+    ]
+    #content
+  ]
 )
 
 #let glossary = yaml("glossary.yaml")
@@ -33,7 +29,8 @@
     if glyph != none { break }
   }
   if glyph == none {
-    panic("could not find icon in glossary", name)
+    glyph = `` // fallback
+    // panic("could not find icon in glossary", name)
   }
   icon(glyph, color: color, size: size, label: label, name)
 }
@@ -68,7 +65,7 @@
     dir: ltr,
     stack(
       text(
-        size: 24pt, 
+        size: 2em,
         weight: "bold", 
         fill: colors.accent,
         contact.name,
@@ -81,7 +78,7 @@
     h(1fr),
     stack(
       icon(`󰁥`, label: i18n("Mail"), [#contact.email]),
-      icon(``, label: i18n("City"), [#contact.postal #contact.city]),
+      icon(``, label: i18n("Location"), [#contact.postal #contact.city]),
     )
   ))
 )

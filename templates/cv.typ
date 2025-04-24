@@ -57,7 +57,7 @@
       ]
       #block(breakable: false)[
         === #i18n("Accomplishments")
-        #for achievement in job.achievements [- #achievement]
+        #for achievement in job.achievements [- #achievement.trim()]
       ]
       #line(length: 100%, stroke: (paint: colors.mantle, thickness: 1.5pt, cap: "round"))
     ]

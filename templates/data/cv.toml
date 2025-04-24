@@ -17,13 +17,18 @@ xing = "xing.com/profile/Vorname_Nachname/cv"
 title = "Software Entwickler"
 location = "Musterfirma 1"
 span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
-highlights = [ #
+tools = [ #
     "HTML",
     "CSS",
     "React",
     "Java",
-]
-tools = [ #
+    "Windows",
+    "Bash",
+    "MySQL",
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
     "Windows",
     "Bash",
     "MySQL",
@@ -37,13 +42,11 @@ achievements = [
 title = "Software Entwickler"
 location = "Musterfirma 1"
 span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
-highlights = [ #
+tools = [ #
     "HTML",
     "CSS",
     "React",
     "Java",
-]
-tools = [ #
     "Windows",
     "Bash",
     "MySQL",
@@ -56,13 +59,11 @@ achievements = [
 title = "Software Entwickler"
 location = "Musterfirma 1"
 span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
-highlights = [ #
+tools = [ #
     "HTML",
     "CSS",
     "React",
     "Java",
-]
-tools = [ #
     "Windows",
     "Bash",
     "MySQL",
@@ -77,13 +78,11 @@ achievements = [
 title = "Software Entwickler"
 location = "Musterfirma 1"
 span = { duration = "3 Jahre", begin = "01.2017", end = "heute" }
-highlights = [ #
+tools = [ #
     "HTML",
     "CSS",
     "React",
     "Java",
-]
-tools = [ #
     "Windows",
     "Bash",
     "MySQL",
@@ -97,13 +96,11 @@ achievements = [
 title = "Software Entwickler"
 location = "Musterfirma 2"
 span = { duration = "3 Jahre", begin = "01.2014", end = "01.2017" }
-highlights = [ #
+tools = [ #
     "HTML",
     "CSS",
     "React",
     "Java",
-]
-tools = [ #
     "Windows",
     "Bash",
     "MySQL",
