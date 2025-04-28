@@ -25,28 +25,29 @@ it sucks. I need to figure that one out...
 
 ### Curriculum Vitae
 
-<div align="center">
-  <img src="docs/cv-0.png" alt="preview of curriculum vitae page 1" />
-  <img src="docs/cv-1.png" alt="preview of curriculum vitae page 2" />
-  <img src="docs/cv-2.png" alt="preview of curriculum vitae page 3" />
-</div>
+<p align="center">
+  <img src="docs/cv-0.png" alt="CV page 1" width="250" />
+  <img src="docs/cv-1.png" alt="CV page 2" width="250" />
+  <img src="docs/cv-2.png" alt="CV page 3" width="250" />
+</p>
+
 
 ### Application Letter
 
 <div align="center">
-  <img src="docs/application.png" alt="preview of application letter" />
+  <img src="docs/application.png" alt="preview of application letter" width="250" />
 </div>
 
 ### Motivational Letter
 
 <div align="center">
-  <img src="docs/motivation.png" alt="preview of motivational letter" />
+  <img src="docs/motivation.png" alt="preview of motivational letter" width="250" />
 </div>
 
 ### Meeting Protocol
 
 <div align="center">
-  <img src="docs/meeting.png" alt="preview of meeting protocol" />
+  <img src="docs/meeting.png" alt="preview of meeting protocol" width="250" />
 </div>
 
 ## TODO's
