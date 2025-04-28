@@ -29,7 +29,7 @@
     if glyph != none { break }
   }
   if glyph == none {
-    glyph = `` // fallback
+    glyph = `` // fallback
     // panic("could not find icon in glossary", name)
   }
   icon(glyph, color: color, size: size, label: label, name)
