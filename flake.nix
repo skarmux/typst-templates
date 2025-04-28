@@ -115,16 +115,7 @@
           taplo
           evince
         ];
-        TYPST_FONT_PATHS = pkgs.lib.concatMapStringsSep ":" [
-          # Symbols (Symbols-Only Nerdfont has alignment issues)
-          "${pkgs.nerd-fonts.profont}"
-          # Emojis
-          "${pkgs.noto-fonts-color-emoji}"
-          # Basic Document Fonts: Arial, Times New Roman, Tahoma, ...
-          "${pkgs.corefonts}"
-          # Basic Document Fonts: Calibri, ...
-          "${pkgs.vistafonts}"
-        ];
+        TYPST_FONT_PATHS = "${pkgs.nerd-fonts.profont}:${pkgs.noto-fonts-color-emoji}:${pkgs.corefonts}:${pkgs.vistafonts}";
         shellHook = ''
           trap 'kill 0' EXIT
           mkdir -p pdf
