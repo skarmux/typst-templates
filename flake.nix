@@ -114,6 +114,9 @@
           tinymist
           taplo
           evince
+          # preview images
+          imagemagick
+          ghostscript
         ];
         TYPST_FONT_PATHS = "${pkgs.nerd-fonts.profont}:${pkgs.noto-fonts-color-emoji}:${pkgs.corefonts}:${pkgs.vistafonts}";
         shellHook = ''

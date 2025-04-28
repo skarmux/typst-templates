@@ -1,11 +1,7 @@
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
 
 Quickly generate documents with a unified design with a simple command from any
-machine. Contents and typeface are stored separately and styling is readonly.
-
-<div align="center">
-  <img src="docs/curriculum_vitae.png" alt="CV" />
-</div>
+machine.
 
 ## Usage
 
@@ -25,6 +21,34 @@ Currently hardcoded to only convert `cv` templates.
 Attention! Changes won't be written to your file until the editor is closed. Yes,
 it sucks. I need to figure that one out...
 
+## Showcase
+
+### Curriculum Vitae
+
+<div align="center">
+  <img src="docs/cv-0.png" alt="preview of curriculum vitae page 1" />
+  <img src="docs/cv-1.png" alt="preview of curriculum vitae page 2" />
+  <img src="docs/cv-2.png" alt="preview of curriculum vitae page 3" />
+</div>
+
+### Application Letter
+
+<div align="center">
+  <img src="docs/application.png" alt="preview of application letter" />
+</div>
+
+### Motivational Letter
+
+<div align="center">
+  <img src="docs/motivation.png" alt="preview of motivational letter" />
+</div>
+
+### Meeting Protocol
+
+<div align="center">
+  <img src="docs/meeting.png" alt="preview of meeting protocol" />
+</div>
+
 ## TODO's
 
 - [x] ~~Make the script run without nix commands by pulling the script out of the nix flake.~~
@@ -43,5 +67,8 @@ it sucks. I need to figure that one out...
 
 ## Acknowledgements
 
-- Color scheme based on [Catppuccin](https://github.com/catppuccin/catppuccin), © 2021 Catppuccin. Licensed under the MIT License. See `licenses/CATPPUCCIN_LICENSE` for details.
-- As well as the [cat footer graphic](https://github.com/catppuccin/catppuccin/blob/main/assets/footers/gray0_ctp_on_line.svg)
+- Typst
+- Nix
+- [© 2021 Catppuccin](https://github.com/catppuccin/catppuccin). Licensed under the MIT License. See `licenses/CATPPUCCIN_LICENSE` for details.
+  - Colorscheme
+  - [Cat Footer Graphic](https://github.com/catppuccin/catppuccin/blob/main/assets/footers/gray0_ctp_on_line.svg)
