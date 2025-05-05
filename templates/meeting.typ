@@ -9,8 +9,7 @@
   fill: colors.base,
 )
 #set text(
-  font: "Arial",
-  // font: "ProFontWindows Nerd Font",
+  font: "FiraCode Nerd Font Propo Ret",
   size: 11pt,
   ligatures: false,
   fill: colors.text,

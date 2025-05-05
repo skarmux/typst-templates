@@ -7,7 +7,7 @@
 #set page( paper: "a4", margin: 0cm, fill: colors.base )
 #set stack(spacing: 1.15em)
 #set text(
-  font: "Arial",
+  font: "FiraCode Nerd Font Propo Ret",
   size: 11pt,
   ligatures: false,
   fill: colors.text,

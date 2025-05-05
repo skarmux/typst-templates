@@ -3,13 +3,12 @@
 #colors.insert("accent", colors.at(sys.inputs.at("accent", default: "blue")))
 
 #let icon(glyph, color: colors.accent, size: 1.5em, label: none, content) = box(
-  align( horizon)[
-    #text(font: "ProFontWindows Nerd Font Mono", fill: color, size, glyph)
-    #h(0.5em)
+  align(horizon)[
+    #text(fill: color, size, glyph)
     #if sys.inputs.at("label", default: "false") == "true" and label != none [
-      #text(fill: color, weight: "bold")[#label: ]
+      #text(baseline: -2pt, fill: color, weight: "bold")[#label: ]
     ]
-    #content
+    #text(baseline: -2pt, content)
   ]
 )
 

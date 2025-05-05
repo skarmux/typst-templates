@@ -9,8 +9,7 @@
   spacing: 1.618em,
 )
 #set text(
-  // font: "ProFontWindows Nerd Font",
-  font: "Arial",
+  font: "FiraCode Nerd Font Propo Ret",
   fill: colors.text,
   lang: sys.inputs.at("lang", default: "en")
 )
@@ -22,6 +21,10 @@
 #show heading.where(level: 1): set text(fill: colors.accent)
 #show heading.where(level: 2): set text(fill: colors.yellow)
 #show heading.where(level: 3): set text(fill: colors.green)
+
+// Prevent linebreak inside `C++`:
+// https://github.com/typst/typst/issues/1941
+#show "C++": box[C++]
 
 #context [
 

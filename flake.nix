@@ -4,10 +4,7 @@
   outputs = { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
     let 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true; # Needed for microsoft true type fonts
-      };
+      pkgs = import nixpkgs { inherit system; };
 
       generate = pkgs.writeShellScriptBin "generate-pdf" ''
         #!/usr/bin/env bash
@@ -73,10 +70,8 @@
 
         # NOTE: `Symbols-Only` glyphs do not align well horizontally
         #       with all the other Font glyphs. Using ProFont instead.
-        TYPST_FONT_PATHS="${pkgs.nerd-fonts.profont}"
+        TYPST_FONT_PATHS="${pkgs.nerd-fonts.fira-code}"
         TYPST_FONT_PATHS="$TYPST_FONT_PATHS:${pkgs.noto-fonts-color-emoji}"
-        TYPST_FONT_PATHS="$TYPST_FONT_PATHS:${pkgs.corefonts}"
-        TYPST_FONT_PATHS="$TYPST_FONT_PATHS:${pkgs.vistafonts}"
 
         ${pkgs.typst}/bin/typst watch \
           --input lang=$LANG \
@@ -118,7 +113,7 @@
           imagemagick
           ghostscript
         ];
-        TYPST_FONT_PATHS = "${pkgs.nerd-fonts.profont}:${pkgs.noto-fonts-color-emoji}:${pkgs.corefonts}:${pkgs.vistafonts}";
+        TYPST_FONT_PATHS = "${pkgs.nerd-fonts.fira-code}:${pkgs.noto-fonts-color-emoji}";
         shellHook = ''
           trap 'kill 0' EXIT
           mkdir -p pdf
@@ -129,7 +124,6 @@
               --ignore-system-fonts \
               --input lang=de \
               --input assets=${self}/assets \
-              --open evince \
               $template \
               pdf/$name.pdf \
               >> pdf/$name.log 2>&1 &

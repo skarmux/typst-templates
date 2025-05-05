@@ -14,6 +14,7 @@ code:
     - [, PHP]
     - [󰨡, Visual Basic Script]
     - [󰢱, Lua]
+    - [, GNU Core Utils]
 devops:
   cicd:
     - [, Jenkins]
@@ -75,11 +76,11 @@ project:
     - [, Subversion]
 database:
   relational:
-    - [, SQL Server]
+    - [, SQL Server]
     - [, PostgreSQL]
-    - [󰆼, MariaDB]
-    - [󰆼, MySQL]
-    - [󰆼, SQLite]
+    - [, MariaDB]
+    - [, MySQL]
+    - [, SQLite]
   nosql:
     - [, Redis]
     - [, MongoDB]
@@ -109,6 +110,9 @@ frameworks:
     - [󰫦, Symfony]
     - [󰜈, React]
     - [, Node.js]
+    - [󰅟, Fabasoft Cloud]
+    - [󰅟, Fabasoft app.ducx]
+    - [, Java Spring]
   graphics:
     - [󱂛, OpenGL]
     - [󱂛, Vulkan]
