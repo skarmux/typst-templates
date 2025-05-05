@@ -3,7 +3,7 @@ code:
     - [, Java]
     - [, C]
     - [, C++]
-    - [, Rust]
+    - [, Rust]
     - [󱄅, Nix]
     - [, WebAssembly]
   script:
@@ -15,6 +15,7 @@ code:
     - [󰨡, Visual Basic Script]
     - [󰢱, Lua]
     - [, GNU Core Utils]
+    - [, Groovy]
 devops:
   cicd:
     - [, Jenkins]
@@ -26,7 +27,7 @@ devops:
     - [󱂚, Ansible]
     - [, CMake]
     - [, Docker]
-    - [, NGINX]
+    - [, NGINX]
 api:
   rest:
     - [󱂛, REST]
@@ -55,7 +56,7 @@ frontend:
     - [, Material Design]
   jslib:
     - [, HTMX]
-    - [󰅩, Alpine.js]
+    - [, Alpine.js]
     - [, jQuery]
   testing:
     - [󰱚, Cypress]
@@ -104,6 +105,7 @@ platforms:
 frameworks:
   web:
     - [󰚿, Angular]
+    - [, Actix Web]
     - [󰡄, Vue.js]
     - [, Leptos]
     - [, Axum]
@@ -114,9 +116,9 @@ frameworks:
     - [󰅟, Fabasoft app.ducx]
     - [, Java Spring]
   graphics:
-    - [󱂛, OpenGL]
+    - [, OpenGL]
     - [󱂛, Vulkan]
-    - [, GLFW]
+    - [, GLFW]
     - [, SDL2]
 development:
   ide:

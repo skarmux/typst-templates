@@ -46,7 +46,18 @@
         trap "rm -rf $TYPST_ROOT" EXIT
         cp ${self}/templates/$TEMPLATE.typ "$TYPST_ROOT/$TEMPLATE.typ"
         cp -rv --no-preserve=all ${self}/templates/modules "$TYPST_ROOT/modules"
+        # copy/symlink image assets to root
         echo "done"
+
+        grep '^image *= *"' "$FILE" | sed -E 's/^image *= *"(.*)"/\1/' | while IFS= read -r filepath; do
+            if [[ -f "$filepath" ]]; then
+                base=$(dirname $FILE);
+                mkdir -p "$TYPST_ROOT/$(dirname "$filepath")"
+                cp "$base/$filepath" "$TYPST_ROOT/$filepath"
+            else
+                echo "Warning: $filepath does not exist."
+            fi
+        done
 
         echo "setting up assets path"
         ASSETS=''${ASSETS:-assets}

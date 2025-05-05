@@ -7,11 +7,10 @@ street = "Beispielstraße 1"
 postal = "12345"
 city = "Stadtname"
 birthdate = "TT.MM.JJJJ"
-homepage = "deine-webseite.de"
-github = "github.com/benutzername"
-linkedin = "linkedin.com/in/benutzername"
-xing = "xing.com/profile/Vorname_Nachname/cv"
-
+homepage = "https://deine-webseite.de"
+github = "https://github.com/benutzername"
+linkedin = "https://linkedin.com/in/benutzername"
+xing = "https://xing.com/profile/Vorname_Nachname/cv"
 
 [[jobs]]
 title = "Software Entwickler"
@@ -112,10 +111,12 @@ achievements = [
 [[certificates]]
 title = "Muster Abschluss 1"
 location = "Muster Hochschule für Musterkunde"
+span = { end = "10.2020" }
 
 [[certificates]]
 title = "Muster Abschluss 2"
 location = "Muster Hochschule für Musterkunde"
+span = { end = "10.2020" }
 
 [[languages]]
 language = "Deutsch"
