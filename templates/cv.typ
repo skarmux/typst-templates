@@ -104,8 +104,12 @@
     ]
   ]
 
+  #v(2.3em)
+
   = #i18n("Personal Projects")
   #data.projects.map(render-project).join(hline())
+
+  #v(2.3em)
 
   #block(breakable: false)[
     = #i18n("Certificates")
@@ -115,14 +119,13 @@
     ]
   ]
 
+  #v(2.3em)
+
   #block(breakable: false)[
     = #i18n("Languages")
-    #show heading: it => strong(it.body) + [ ]
     #for lang in data.languages [
-      #[== #lang.language]
-      #[===  #i18n("Proficiency")]
-      #lang.proficiency
-      #v(1.15em)
+      == #lang.language
+      #i18n("Proficiency"): #lang.proficiency
     ]
   ]
 

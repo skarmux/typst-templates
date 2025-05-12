@@ -5,6 +5,7 @@ code:
     - [, C++]
     - [, Rust]
     - [󱄅, Nix]
+    - [󱄅, Nix Flakes]
     - [, WebAssembly]
   script:
     - [󰌠, Python]
@@ -21,6 +22,7 @@ devops:
     - [, Jenkins]
     - [, OAuth 2.0]
     - [󰒃, SOPS]
+    - [󰒃, FIDO2]
     - [, GitLab CI]
     - [󰠄, Bamboo]
   config:
